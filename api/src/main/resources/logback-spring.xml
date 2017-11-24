@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+<property name="CONSOLE_LOG_PATTERN" value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} [%X{action}] [UID:%X{uid}] %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+<property name="FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} : [%X{action}] [UID:%X{uid}] %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+<include resource="org/springframework/boot/logging/logback/file-appender.xml" />
+<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>/data/logs/api/api.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <!-- daily rollover. Make sure the path matches the one in the file element or else the rollover logs are placed in the working directory. -->
+        <fileNamePattern>/data/logs/api/api_%d{yyyy-MM-dd}.log</fileNamePattern>
+        <!--<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            <maxFileSize>5MB</maxFileSize>
+        </timeBasedFileNamingAndTriggeringPolicy> -->
+        <!-- keep 30 days' worth of history -->
+        <maxHistory>30</maxHistory>
+    </rollingPolicy>
+    <encoder>
+        <charset>UTF-8</charset>
+        <pattern>${FILE_LOG_PATTERN}</pattern>
+    </encoder>
+</appender>
+
+<!--<logger name="com.netflix.hystrix" level="DEBUG" />-->
+<logger name="com.iqiyi.mbd.open.platform.common.filter" level="WARN" />
+<logger name="com.qiyi.mbd.common.taskcenter" level="WARN" />
+<springProfile name="dev,test">
+    <logger name="com.iqiyi.mbd" level="DEBUG" />
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</springProfile>
+<springProfile name="product">
+    <logger name="com.iqiyi.mbd.qiyihao" level="INFO" />
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</springProfile>
+</configuration>
