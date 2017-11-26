@@ -32,7 +32,7 @@
         <appender-ref ref="FILE"/>
     </root>
 </springProfile>
-<springProfile name="product">
+<springProfile name="prod">
     <logger name="com.zdh.api" level="INFO" />
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>

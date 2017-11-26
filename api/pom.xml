@@ -77,15 +77,13 @@
 				</resources>
 			</build>
 		</profile>
-
-
 		<profile>
-			<id>test</id>
+			<id>prod</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<spring.profile>test</spring.profile>
+				<spring.profile>prod</spring.profile>
 				<spring.configServer>http://111.230.132.225:19999/</spring.configServer>
 			</properties>
 			<build>
