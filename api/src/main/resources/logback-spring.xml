@@ -24,7 +24,7 @@
 
 <!--<logger name="com.netflix.hystrix" level="DEBUG" />-->
 <logger name="com.iqiyi.mbd.open.platform.common.filter" level="WARN" />
-<logger name="com.qiyi.mbd.common.taskcenter" level="WARN" />
+<logger name="com.zdh.api" level="WARN" />
 <springProfile name="dev,test">
     <logger name="com.iqiyi.mbd" level="DEBUG" />
     <root level="INFO">
@@ -33,7 +33,7 @@
     </root>
 </springProfile>
 <springProfile name="product">
-    <logger name="com.iqiyi.mbd.qiyihao" level="INFO" />
+    <logger name="com.zdh.api" level="INFO" />
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>

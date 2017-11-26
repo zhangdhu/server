@@ -21,6 +21,12 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class RestApiControllerTest {
+    @Test
+    public void getById() throws Exception {
+        long uid = 100;
+        RequestBuilder requestBuilder = get("/api/1.0/rest/param/" + uid);
+        mvc.perform(requestBuilder).andExpect(status().isOk());
+    }
 
     MockMvc mvc;
 
